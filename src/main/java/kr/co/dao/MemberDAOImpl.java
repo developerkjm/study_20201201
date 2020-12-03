@@ -11,10 +11,17 @@ import kr.co.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO {
 	
 	@Inject SqlSession sql;
+	
 	// 회원가입
-
 	@Override
 	public void register(MemberVO vo) throws Exception {
 		sql.insert("memberMapper.register", vo);
+	}
+	
+	// 로그인
+	@Override
+	public MemberVO login(MemberVO vo) throws Exception {
+		
+		return sql.selectOne("memberMapper.login", vo);
 	}
 }
